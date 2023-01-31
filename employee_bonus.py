@@ -1,6 +1,11 @@
+# Import CSV module
 import csv
 
-with open("EmployeePay.csv", "r") as csvfile:
-    reader = csv.reader(csvfile)
+
+# Read input CSV file
+with open("EmployeePay.csv", "r") as csv_input:
+    reader = csv.reader(csv_input)
+
+    # Print employee details
     for row in reader:
         print(row)

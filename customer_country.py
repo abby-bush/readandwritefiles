@@ -1,24 +1,34 @@
+# Import CSV module
 import csv
 
+
+# Create lists and define variables
+all_fields = []
 fields = []
-fields2 = []
-
-with open("customers.csv", mode="r") as csv_file:
-    reader = csv.reader(csv_file)
-    for row in reader:
-        fields.append(row)
-
 x = 0
 
-for row in fields:
-    row1 = fields[x][1]
-    row2 = fields[x][2]
-    row3 = fields[x][4]
+
+# Read the input CSV file
+with open("customers.csv", mode="r") as csv_input:
+    reader = csv.reader(csv_input)
+
+    # Add data into the first list
+    for row in reader:
+        all_fields.append(row)
+
+
+# Filter data to first name, last name, and country
+for row in all_fields:
+    row1 = all_fields[x][1]
+    row2 = all_fields[x][2]
+    row3 = all_fields[x][4]
     fieldrow = [row1, row2, row3]
-    fields2.append(fieldrow)
+    fields.append(fieldrow)
     x += 1
 
-with open("customer_country.csv", "w") as csvfile:
-    csvwriter = csv.writer(csvfile)
-    for row in fields2:
+
+# Write the output file
+with open("customer_country.csv", "w") as csv_output:
+    csvwriter = csv.writer(csv_output)
+    for row in fields:
         csvwriter.writerow(row)
