@@ -1,7 +1,7 @@
 # Import CSV Module
 import csv
 
-
+"""
 # Setting up lists and values
 all_fields = []
 some_fields = []
@@ -55,3 +55,30 @@ with open("salesreport.csv", "w") as csv_output:
 
     for row in fields:
         writer.writerow(row)
+
+"""
+# what professor bhojwani did
+salesfile = open("sales.csv", "r")
+outfile = open("salesreport.csv", "w")
+
+outfile.write("Customer ID, Total\n")
+
+sales = csv.reader(salesfile, delimiter=",")
+
+next(sales)
+
+cust_total = 0
+custID = "250"
+
+
+for rec in sales:
+    if custID != rec[0]:
+        outfile.write(custID + "," + format(cust_total, ".2f") + "\n")
+        cust_total = 0
+        custID = rec[0]
+
+    subtotal = float(rec[3])
+    tax = float(rec[4])
+    fr = float(rec[5])
+    total = subtotal + tax + fr
+    cust_total += total
